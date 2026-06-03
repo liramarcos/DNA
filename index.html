@@ -3,100 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNA Consulting | Business Intelligence & Data Analytics</title>
-    <link rel="stylesheet" href="CSS/estilo.css">
-</head>
-<body>
+    <title>DNA Data Solutions | Consultoria de Dados & Business Intelligence</title>
+    <style>
+        /* Reset e Definições de Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    <header class="header">
-        <div class="nav-container">
-            <div class="logo-area">
-                <img class="logo-img" src="imagens/logo.png" alt="DNA Consulting Logo">
-            </div>
-            <nav class="nav-links">
-                <a href="#solucoes" class="nav-item">Soluções</a>
-                <a href="#metodologia" class="nav-item">Metodologia</a>
-                <a href="#indicadores" class="nav-item">Resultados</a>
-                <a href="#contato" class="nav-item btn-contato">Fale com um Consultor</a>
-            </nav>
-        </div>
-    </header>
+        :root {
+            --primary-bg: #0a1128;
+            --secondary-bg: #101f42;
+            --accent-blue: #0077ff;
+            --accent-cyan: #00f2fe;
+            --text-light: #ffffff;
+            --text-muted: #8fa0c4;
+            --card-bg: #172a53;
+            --border-color: #223e75;
+        }
 
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>Transformando Dados em Decisões Estratégicas</h1>
-            <p class="hero-tagline">No DNA da sua empresa está o mapa analítico para o próximo nível de crescimento.</p>
-            <p class="hero-description">A DNA Consulting une engenharia de dados avançada e inteligência de negócios para decodificar cenários complexos, transformando fluxos brutos em dashboards dinâmicos e insights acionáveis.</p>
-            <a href="#solucoes" class="cta-button">Conheça Nossas Soluções</a>
-        </div>
-    </section>
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    <section id="solucoes" class="main-container">
-        <h2>Soluções em Business Intelligence</h2>
-        <p class="section-intro">Estruturamos a arquitetura de dados da sua empresa ponta a ponta, garantindo governança, performance e precisão técnica.</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="icon-box">🧠</div>
-                <h3>Engenharia de Dados & ETL</h3>
-                <p>Modelagem de Data Warehouses modernos, integração de fontes complexas (APIs, ERPs, CRMs) e automação de pipelines robustos.</p>
-            </div>
-            <div class="service-card">
-                <div class="icon-box">📊</div>
-                <h3>Dashboards Avançados</h3>
-                <p>Desenvolvimento de painéis visuais, interativos e intuitivos para o monitoramento em tempo real dos KPIs vitais do seu negócio.</p>
-            </div>
-            <div class="service-card">
-                <div class="icon-box">🔒</div>
-                <h3>Governança & Self-Service BI</h3>
-                <p>Implementação de políticas de segurança, controle de acessos (RLS) e treinamento para democratizar a cultura data-driven com autonomia.</p>
-            </div>
-        </div>
-    </section>
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    <section id="metodologia" class="bg-alt">
-        <div class="main-container">
-            <h2>Metodologia de Otimização Analítica</h2>
-            <p>Nossa abordagem técnica avalia cientificamente o impacto das decisões automatizadas e o Retorno sobre Investimento (ROI) em infraestrutura tecnológica:</p>
-            
-            <div class="methodology-box">
-                <h4>Equação de Valor de Business Intelligence:</h4>
-                <div class="equation-container">
-                    <span class="math">V<sub>total</sub> = &Sigma; (D<sub>i</sub> &times; A<sub>i</sub>) - C<sub>infra</sub></span>
-                </div>
-                <p class="equation-legend">Onde <span class="math">V<sub>total</sub></span> é o valor financeiro líquido gerado, <span class="math">D<sub>i</sub></span> é o impacto da decisão otimizada, <span class="math">A<sub>i</sub></span> indica a acurácia preditiva dos painéis e <span class="math">C<sub>infra</sub></span> o custo de manutenção estrutural.</p>
-            </div>
-        </div>
-    </section>
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    <section id="indicadores" class="main-container">
-        <h2>Resultados com a DNA Data Solutions</h2>
-        <p class="section-intro">Métricas médias alcançadas por nossos parceiros corporativos após a transformação analítica:</p>
+        /* Botões */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            color: var(--text-light);
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
 
-        <div class="metrics-grid">
-            <div class="metric-item">
-                <span class="metric-value">+42%</span>
-                <span class="metric-label">Eficiência Operacional</span>
-            </div>
-            <div class="metric-item">
-                <span class="metric-value">-65%</span>
-                <span class="metric-label">Tempo com Relatórios Manuais</span>
-            </div>
-            <div class="metric-item">
-                <span class="metric-value">3.8x</span>
-                <span class="metric-label">Retorno sobre Investimento (ROI)</span>
-            </div>
-            <div class="metric-item">
-                <span class="metric-value">100%</span>
-                <span class="metric-label">Dados Auditáveis e Confiáveis</span>
-            </div>
-        </div>
-    </section>
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.2);
+        }
 
-    <footer id="contato" class="footer">
-        <p>&copy; 2026 DNA Consulting - Soluções Avançadas em Business Intelligence. Todos os direitos reservados.</p>
-        <p class="footer-sub">Transformando dados complexos em vantagens competitivas de alto impacto.</p>
-    </footer>
+        /* Cabeçalho / Navbar */
+        header {
+            background-color: rgba(10, 17, 40, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
 
-</body>
-</html>
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Seção Hero */
+        .hero {
+            padding: 180px 0 100px 0;
+            background: radial-gradient(circle at top right, rgba(0, 119, 255, 0.15), transparent 50%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Grid de Obras/Serviços */
+        .services {
+            padding: 80px 0;
+            background-color: var(--secondary-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            text-transform: uppercase;
+            font-size: 13px;
+            color: var(--accent-cyan);
+            letter-spacing: 3px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1max));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px 30px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .service-card:hover
