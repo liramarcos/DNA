@@ -396,7 +396,7 @@
         }
 
         /* ==========================================================================
-           SEÇÃO: FORMULÁRIO DE CONTATO (CORRIGIDO PARA ENVIO REAL)
+           SEÇÃO DE CONTATO INFORMATIVA (SEM FORMULÁRIO)
            ========================================================================== */
         .contato-secao {
             padding: 100px 0;
@@ -454,89 +454,54 @@
             color: var(--cor-acentuada);
         }
 
-        .contato-form-box {
+        .contato-acoes {
             flex: 1.5;
             padding: 50px;
             background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
-        .form-grupo {
-            margin-bottom: 22px;
-        }
-
-        .form-grupo label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .contato-acoes h4 {
+            font-size: 1.5rem;
             color: var(--cor-primaria);
+            margin-bottom: 20px;
         }
 
-        .form-controle {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            color: var(--cor-primaria);
-            background-color: #f8fafc;
-            transition: var(--transicao);
-            outline: none;
+        .contato-acoes p {
+            color: var(--cor-texto-mutado);
+            margin-bottom: 30px;
+            max-width: 400px;
         }
 
-        .form-controle:focus {
-            border-color: var(--cor-secundaria);
-            background-color: #ffffff;
-            box-shadow: 0 0 0 4px rgba(0, 118, 163, 0.1);
-        }
-
-        textarea.form-controle {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .btn-enviar {
+        .btn-contato-grande {
+            display: inline-block;
             background-color: var(--cor-acentuada);
             color: #ffffff;
-            border: none;
-            padding: 14px 35px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(241, 115, 0, 0.2);
-            transition: var(--transicao);
-            width: 100%;
-            max-width: 220px;
-        }
-
-        .btn-enviar:hover {
-            background-color: #d66600;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(241, 115, 0, 0.3);
-        }
-
-        /* Toast de mensagem de sucesso */
-        .toast-message {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #10b981;
-            color: white;
-            padding: 15px 25px;
+            text-decoration: none;
+            padding: 16px 40px;
             border-radius: 8px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            font-weight: 500;
-            z-index: 9999;
-            animation: fadeInOut 3s ease forwards;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transicao);
+            box-shadow: 0 5px 15px rgba(241, 115, 0, 0.3);
         }
 
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateX(50px); }
-            15% { opacity: 1; transform: translateX(0); }
-            85% { opacity: 1; transform: translateX(0); }
-            100% { opacity: 0; transform: translateX(50px); visibility: hidden; }
+        .btn-contato-grande:hover {
+            transform: translateY(-3px);
+            background-color: #d66600;
+            box-shadow: 0 8px 22px rgba(241, 115, 0, 0.4);
+        }
+
+        .email-destaque {
+            font-size: 1.2rem;
+            color: var(--cor-secundaria);
+            font-weight: 600;
+            margin-top: 20px;
+            word-break: break-all;
         }
 
         /* ==========================================================================
@@ -661,11 +626,8 @@
             .contato-wrapper {
                 flex-direction: column;
             }
-            .contato-info-box, .contato-form-box {
+            .contato-info-box, .contato-acoes {
                 width: 100%;
-            }
-            .btn-enviar {
-                max-width: 100%;
             }
         }
     </style>
@@ -820,52 +782,35 @@
     </section>
 
     <!-- ==========================================
-         FORMULÁRIO DE CONTATO CORRIGIDO (COM ENVIO SIMULADO E VALIDAÇÃO)
+         SEÇÃO DE CONTATO INFORMATIVA (SEM FORMULÁRIO)
          ========================================== -->
     <section id="contato" class="contato-secao">
         <div class="container">
             <div class="secao-titulo">
                 <h2>Vamos Transformar Seus Dados em Lucro?</h2>
-                <p>Preencha os campos abaixo para solicitar um diagnóstico inicial da maturidade analítica da sua empresa com nossos especialistas.</p>
+                <p>Entre em contato com nossa equipe de especialistas e agende uma consultoria gratuita.</p>
             </div>
 
             <div class="contato-wrapper">
                 <div class="contato-info-box">
                     <h3>Contato Direto</h3>
-                    <p>Pronto para dar o próximo passo rumo a uma cultura Data-Driven? Estamos à disposição.</p>
+                    <p>Pronto para dar o próximo passo rumo a uma cultura Data-Driven? Estamos à disposição para atender sua empresa.</p>
                     
                     <ul class="lista-detalhes">
-                        <li><span class="icon-circulo">✉</span> contato@dnadatasolutions.com.br</li>
+                        <li><span class="icon-circulo">✉</span> contato@dnadatasolutions.com</li>
+                        <li><span class="icon-circulo">📞</span> +55 (81) xxxxx-xxxx</li>
                         <li><span class="icon-circulo">📍</span> Atendimento Corporativo Global</li>
                         <li><span class="icon-circulo">📊</span> Especialistas em BI e Engineering</li>
                     </ul>
                 </div>
 
-                <div class="contato-form-box">
-                    <!-- FORMULÁRIO CORRIGIDO: ação vazia, mas com onsubmit interceptado -->
-                    <form id="formContato" method="POST">
-                        <div class="form-grupo">
-                            <label for="nome">Nome Completo *</label>
-                            <input type="text" id="nome" name="nome" class="form-controle" placeholder="Ex: João Silva" required>
-                        </div>
-
-                        <div class="form-grupo">
-                            <label for="email">E-mail Corporativo *</label>
-                            <input type="email" id="email" name="email" class="form-controle" placeholder="Ex: joao@empresa.com" required>
-                        </div>
-
-                        <div class="form-grupo">
-                            <label for="empresa">Nome da Empresa</label>
-                            <input type="text" id="empresa" name="empresa" class="form-controle" placeholder="Sua Empresa Ltda.">
-                        </div>
-
-                        <div class="form-grupo">
-                            <label for="mensagem">Descreva o seu Desafio com Dados *</label>
-                            <textarea id="mensagem" name="mensagem" class="form-controle" placeholder="Conte-nos brevemente quais painéis ou integrações sua empresa precisa hoje..." required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-enviar">Enviar Mensagem</button>
-                    </form>
+                <div class="contato-acoes">
+                    <h4>Fale com um Especialista</h4>
+                    <p>Nossa equipe está pronta para entender seus desafios e propor as melhores soluções em Business Intelligence.</p>
+                    <a href="mailto:contato@dnadatasolutions.com.br" class="btn-contato-grande">📧 Enviar E-mail</a>
+                    <div class="email-destaque">
+                        ou ligue: (81) xxxxx-xxxx
+                    </div>
                 </div>
             </div>
         </div>
@@ -905,71 +850,5 @@
         </div>
     </footer>
 
-    <!-- Script para tornar o formulário funcional (envio simulado + validação) -->
-    <script>
-        (function() {
-            const form = document.getElementById('formContato');
-            if (!form) return;
-
-            // Função para exibir toast de sucesso
-            function showSuccessToast(message) {
-                const existingToast = document.querySelector('.toast-message');
-                if(existingToast) existingToast.remove();
-                
-                const toast = document.createElement('div');
-                toast.className = 'toast-message';
-                toast.innerText = message || '✅ Mensagem enviada com sucesso! Em breve nosso time retornará o contato.';
-                document.body.appendChild(toast);
-                
-                setTimeout(() => {
-                    if(toast && toast.parentNode) toast.remove();
-                }, 3500);
-            }
-
-            // Intercepta o envio do formulário
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();  // Impede o recarregamento da página
-
-                // Captura os valores dos campos
-                const nome = document.getElementById('nome')?.value.trim();
-                const email = document.getElementById('email')?.value.trim();
-                const empresa = document.getElementById('empresa')?.value.trim() || 'Não informado';
-                const mensagem = document.getElementById('mensagem')?.value.trim();
-
-                // Validação simples
-                if (!nome || !email || !mensagem) {
-                    alert('Por favor, preencha todos os campos obrigatórios (*).');
-                    return;
-                }
-
-                if (!email.includes('@') || !email.includes('.')) {
-                    alert('Por favor, insira um e-mail corporativo válido.');
-                    return;
-                }
-
-                // Simula o envio para uma API ou backend (aqui apenas um log e feedback visual)
-                console.log('Dados enviados (simulação):', { nome, email, empresa, mensagem });
-
-                // Exibe mensagem de sucesso ao usuário
-                showSuccessToast('✅ Obrigado, ' + nome.split(' ')[0] + '! Sua mensagem foi enviada com sucesso. Responderemos em até 24h.');
-
-                // Limpa o formulário após envio bem-sucedido (opcional, mas boa prática)
-                form.reset();
-                
-                // Opcional: enviar para um endpoint real via fetch (caso queira integrar depois)
-                // Exemplo descomentado:
-                /*
-                fetch('https://seudominio.com/api/contato', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nome, email, empresa, mensagem })
-                })
-                .then(response => response.json())
-                .then(data => console.log('Resposta do servidor:', data))
-                .catch(error => console.error('Erro:', error));
-                */
-            });
-        })();
-    </script>
 </body>
 </html>
