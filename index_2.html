@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Data Solutions | Consultoria em Business Intelligence</title>
+    <style>
+        /* ==========================================================================
+           RESET E CONFIGURAÇÕES GERAIS
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --cor-primaria: #0f172a;    /* Azul Escuro Corporativo (Texto DNA) */
+            --cor-secundaria: #0076a3;  /* Azul Intermediário (Gráfico/DNA) */
+            --cor-acentuada: #f17300;   /* Laranja Vibrante (Seta de Crescimento) */
+            --cor-fundo-claro: #f8fafc; /* Cinza Fundo Suave */
+            --cor-texto-mutado: #64748b;/* Texto secundário */
+            --transicao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--cor-fundo-claro);
+            color: var(--cor-primaria);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==========================================================================
+           HEADER & NAVBAR (Logo em Destaque Ampliado)
+           ========================================================================== */
+        .navbar {
+            display: block;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0; /* Aumentado para dar mais respiro à logo maior */
+        }
+
+        .navbar-container {
+            display: table;
+            width: 100%;
+        }
+
+        .brand-logo-wrapper {
+            display: table-cell;
+            vertical-align: middle;
+            width: 200px; /* Expandido para acomodar a logo maior */
+        }
+
+        .brand-logo-wrapper img {
+            height: 185px; /* LOGO MAIOR: Aumentado de 60px para 85px para dar grande destaque visual */
+            width: auto;
+            display: block;
+            cursor: pointer;
+            transition: var(--transicao);
+        }
+
+        /* Efeito sutil de iluminação na logo ao passar o mouse */
+        .brand-logo-wrapper img:hover {
+            transform: scale(1.02);
+            filter: drop-shadow(0 4px 12px rgba(0, 118, 163, 0.15));
+        }
+
+        .nav-menu-wrapper {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        .nav-links {
+            display: inline-flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none; /* Sem sublinhado */
+            color: var(--cor-primaria);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transicao);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--cor-acentuada);
+            transition: var(--transicao);
+        }
+
+        .nav-links a:hover {
+            color: var(--cor-acentuada);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links .btn-cta-nav {
+            background-color: var(--cor-secundaria);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 118, 163, 0.2);
+        }
+
+        .nav-links .btn-cta-nav::after {
+            display: none;
+        }
+
+        .nav-links .btn-cta-nav:hover {
+            background-color: var(--cor-primaria);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.2);
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #edf4f8 100%);
+            padding: 100px 0 120px 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            background: url('logo.jpg') no-repeat center right;
+            background-size: contain;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .hero-layout {
+            display: table;
+            width: 100%;
+        }
+
+        .hero-text {
+            display: table-cell;
+            vertical-align: middle;
+            width: 55%;
+            padding-right: 40px;
+        }
+
+        .hero-visual {
+            display: table-cell;
+            vertical-align: middle;
+            width: 45%;
+            text-align: right;
+        }
+
+        .mockup-dashboard {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+            padding: 25px;
+            display: inline-block;
+            width: 100%;
+            max-width: 460px;
+            text-align: left;
+            border-top: 5px solid var(--cor-secundaria);
+        }
+
+        .hero-tag {
+            background-color: rgba(241, 115, 0, 0.1);
+            color: var(--cor-acentuada);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            color: var(--cor-primaria);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--cor-secundaria);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--cor-texto-mutado);
+            margin-bottom: 35px;
+            max-width: 540px;
+        }
+
+        .btn-principal {
+            display: inline-block;
+            background-color: var(--cor-acentuada);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 5px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(241, 115, 0, 0.3);
+            transition: var(--transicao);
+        }
+
+        .btn-principal:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(241, 115, 0, 0.4);
+            background-color: #d66600;
+        }
+
+        .dash-row {
+            display: block;
+            margin-bottom: 15px;
+        }
+        .dash-bar {
+            height: 12px;
+            background-color: #e2e8f0;
+            border-radius: 6px;
+            margin-top: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+        .dash-fill-1 { width: 85%; background: linear-gradient(90deg, var(--cor-secundaria), #00b4d8); height: 100%; }
+        .dash-fill-2 { width: 60%; background: linear-gradient(90deg, var(--cor-acentuada), #ff9f43); height: 100%; }
+        .dash-fill-3 { width: 73%; background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria)); height: 100%; }
+
+        /* ==========================================================================
+           MÉTRICAS / NÚMEROS
+           ========================================================================== */
+        .metricas {
+            background-color: var(--cor-primaria);
+            color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .metricas-grid {
+            display: table;
+            width: 100%;
+        }
+
+        .metrica-item {
+            display: table-cell;
+            width: 25%;
+        }
+
+        .metrica-numero {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cor-acentuada);
+            margin-bottom: 5px;
+        }
+
+        .metrica-rotulo {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==========================================================================
+           PILARES DE SERVIÇOS
+           ========================================================================== */
+        .servicos {
+            padding: 100px 0;
+            background-color: #ffffff;
+        }
+
+        .secao-titulo {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .secao-titulo h2 {
+            font-size: 2.2rem;
+            color: var(--cor-primaria);
+            margin-bottom: 15px;
+        }
+
+        .secao-titulo p {
+            color: var(--cor-texto-mutado);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .servicos-row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-spacing: 20px 0;
+        }
+
+        .servico-card {
+            display: table-cell;
+            background-color: var(--cor-fundo-claro);
+            padding: 35px 25px;
+            border-radius: 8px;
+            border-bottom: 4px solid #e2e8f0;
+            transition: var(--transicao);
+            vertical-align: top;
+        }
+
+        .servico-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--cor-secundaria);
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.05);
+            background-color: #ffffff;
+        }
+
+        .servico-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--cor-secundaria);
+            display: inline-block;
+        }
+
+        .servico-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--cor-primaria);
+        }
+
+        .servico-card p {
+            font-size: 0.95rem;
+            color: var(--cor-texto-mutado);
+        }
+
+        /* ==========================================================================
+           PROCESSO METODOLÓGICO
+           ========================================================================== */
+        .processo {
+            padding: 100px 0;
+            background-color: var(--cor-fundo-claro);
+        }
+
+        .processo-linha {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-spacing: 15px 0;
+        }
+
+        .passo-item {
+            display: table-cell;
+            position: relative;
+            background: #ffffff;
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .passo-numero {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            background-color: var(--cor-acentuada);
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-weight: 700;
+            text-align: center;
+            line-height: 40px;
+            box-shadow: 0 4px 10px rgba(241, 115, 0, 0.3);
+        }
+
+        .passo-item h4 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .passo-item p {
+            font-size: 0.9rem;
+            color: var(--cor-texto-mutado);
+        }
+
+        /* ==========================================================================
+           NOVA SEÇÃO: FORMULÁRIO DE CONTATO (Visual Corporativo de Alta Performance)
+           ========================================================================== */
+        .contato-secao {
+            padding: 100px 0;
+            background-color: #ffffff;
+        }
+
+        .contato-wrapper {
+            display: table;
+            width: 100%;
+            background-color: var(--cor-fundo-claro);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+        }
+
+        .contato-info-box {
+            display: table-cell;
+            width: 40%;
+            background-color: var(--cor-primaria);
+            color: #ffffff;
+            padding: 50px;
+            vertical-align: middle;
+        }
+
+        .contato-info-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .contato-info-box p {
+            color: #94a3b8;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .lista-detalhes {
+            list-style: none;
+        }
+
+        .lista-detalhes li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        .lista-detalhes .icon-circulo {
+            background-color: rgba(255,255,255,0.07);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            color: var(--cor-acentuada);
+        }
+
+        .contato-form-box {
+            display: table-cell;
+            width: 60%;
+            padding: 50px;
+            vertical-align: top;
+            background-color: #ffffff;
+        }
+
+        /* Elementos estruturais do formulário */
+        .form-grupo {
+            margin-bottom: 22px;
+        }
+
+        .form-grupo label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--cor-primaria);
+        }
+
+        .form-controle {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: var(--cor-primaria);
+            background-color: #f8fafc;
+            transition: var(--transicao);
+            outline: none;
+        }
+
+        .form-controle:focus {
+            border-color: var(--cor-secundaria);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(0, 118, 163, 0.1);
+        }
+
+        textarea.form-controle {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-enviar {
+            background-color: var(--cor-acentuada);
+            color: #ffffff;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(241, 115, 0, 0.2);
+            transition: var(--transicao);
+            width: 100%; /* Ocupa largura total no mobile/tabelas */
+            max-width: 220px;
+        }
+
+        .btn-enviar:hover {
+            background-color: #d66600;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(241, 115, 0, 0.3);
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--cor-primaria);
+            color: #ffffff;
+            padding: 60px 0 30px 0;
+            border-top: 5px solid var(--cor-acentuada);
+        }
+
+        .footer-layout {
+            display: table;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .footer-col-main {
+            display: table-cell;
+            width: 40%;
+            vertical-align: top;
+            padding-right: 40px;
+        }
+
+        .footer-col-links {
+            display: table-cell;
+            width: 30%;
+            vertical-align: top;
+        }
+
+        .footer-col-contato {
+            display: table-cell;
+            width: 30%;
+            vertical-align: top;
+        }
+
+        .footer-logo {
+            height: 60px; /* Aumentado também no rodapé para manter padrão */
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-layout h5 {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-layout h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--cor-secundaria);
+        }
+
+        .footer-menu {
+            list-style: none;
+        }
+
+        .footer-menu li {
+            margin-bottom: 12px;
+        }
+
+        .footer-menu a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transicao);
+        }
+
+        .footer-menu a:hover {
+            color: var(--cor-acentuada);
+            padding-left: 5px;
+        }
+
+        .contato-info p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         BARRA DE NAVEGAÇÃO (NAVBAR)
+         ========================================== -->
+    <header class="navbar">
+        <div class="container navbar-container">
+            <!-- Posição Estratégica: Canto Superior Esquerdo Amplo -->
+            <div class="brand-logo-wrapper">
+                <a href="#home">
+                    <img src="logo.png" alt="DNA Data Solutions - Consultoria em Business Intelligence">
+                </a>
+            </div>
+            
+            <!-- Links de navegação sem sublinhado -->
+            <nav class="nav-menu-wrapper">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#servicos">Soluções</a></li>
+                    <li><a href="#metodologia">Metodologia</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#contato" class="btn-cta-nav">Agendar Consultoria</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section id="home" class="hero">
+        <div class="container hero-layout">
+            <div class="hero-text">
+                <div class="hero-tag">Inteligência de Dados Aplicada</div>
+                <h1>Decisões complexas traduzidas em <span>lucro e eficiência</span>.</h1>
+                <p>Na DNA Data Solutions, transformamos os dados brutos da sua empresa em painéis analíticos dinâmicos de alta performance, permitindo que cada ação estratégica seja guiada pela máxima previsibilidade.</p>
+                <a href="#servicos" class="btn-principal">Descubra Nossas Soluções</a>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="mockup-dashboard">
+                    <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 15px; color: var(--cor-secundaria); text-transform:uppercase; letter-spacing:0.5px;">📈 Painel de Performance Operacional</p>
+                    <div class="dash-row">
+                        <span style="font-size:0.85rem; font-weight:600;">Otimização de Custos Logísticos</span>
+                        <div class="dash-bar"><div class="dash-fill-1"></div></div>
+                    </div>
+                    <div class="dash-row">
+                        <span style="font-size:0.85rem; font-weight:600;">Previsibilidade de Demanda de Mercado</span>
+                        <div class="dash-bar"><div class="dash-fill-2"></div></div>
+                    </div>
+                    <div class="dash-row">
+                        <span style="font-size:0.85rem; font-weight:600;">Retorno sobre Investimento (ROI)</span>
+                        <div class="dash-bar"><div class="dash-fill-3"></div></div>
+                    </div>
+                    <div style="margin-top:20px; padding-top:15px; border-top:1px solid #f1f5f9; text-align:right;">
+                        <span style="font-size:0.75rem; color:var(--cor-texto-mutado); font-style:italic;">Atualizado em tempo real • DNA BI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SESSÃO DE MÉTRICAS
+         ========================================== -->
+    <section class="metricas">
+        <div class="container metricas-grid">
+            <div class="metrica-item">
+                <div class="metrica-numero">+30%</div>
+                <div class="metrica-rotulo">Eficiência Operacional Média</div>
+            </div>
+            <div class="metrica-item">
+                <div class="metrica-numero">Milhões</div>
+                <div class="metrica-rotulo">De Linhas de Dados Processadas</div>
+            </div>
+            <div class="metrica-item">
+                <div class="metrica-numero">100%</div>
+                <div class="metrica-rotulo">Decisões Baseadas em Fatos</div>
+            </div>
+            <div class="metrica-item">
+                <div class="metrica-numero">ROI</div>
+                <div class="metrica-rotulo">Garantido em Curto Prazo</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SOLUÇÕES / SERVIÇOS
+         ========================================== -->
+    <section id="servicos" class="servicos">
+        <div class="container">
+            <div class="secao-titulo">
+                <h2>O DNA da sua empresa focado em resultados</h2>
+                <p>Estruturamos toda a jornada analítica da sua organização, desde a captação até a visualização executiva inteligente.</p>
+            </div>
+            
+            <div class="servicos-row">
+                <div class="servico-card">
+                    <div class="servico-icon">📊</div>
+                    <h3>Dashboards Executivos</h3>
+                    <p>Desenvolvimento de painéis dinâmicos e intuitivos no Power BI, Tableau ou Looker Studio, sob medida para a liderança e gestão da sua empresa.</p>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">⚙️</div>
+                    <h3>Engenharia de Dados (ETL)</h3>
+                    <p>Modelagem, limpeza e consolidação de múltiplas fontes de dados (ERPs, CRMs, planilhas) em repositórios unificados e otimizados.</p>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">💡</div>
+                    <h3>Consultoria Estratégica</h3>
+                    <p>Mapeamento de indicadores-chave de performance (KPIs), auditoria de dados existentes e aculturamento analítico de equipes (Data Driven).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         METODOLOGIA DE TRABALHO
+         ========================================== -->
+    <section id="metodologia" class="processo">
+        <div class="container">
+            <div class="secao-titulo">
+                <h2>Nossa Metodologia Analítica</h2>
+                <p>Uma esteira eficiente para garantir segurança, precisão e velocidade na entrega das suas visões analíticas.</p>
+            </div>
+            
+            <div class="processo-linha">
+                <div class="passo-item">
+                    <div class="passo-numero">1</div>
+                    <h4>Mapeamento</h4>
+                    <p>Imersão total nas suas dores de negócios para identificar gargalos e KPIs prioritários.</p>
+                </div>
+                <div class="passo-item">
+                    <div class="passo-numero">2</div>
+                    <h4>Integração</h4>
+                    <p>Conexão segura, extração e tratamento rigoroso de dados de qualquer sistema.</p>
+                </div>
+                <div class="passo-item">
+                    <div class="passo-numero">3</div>
+                    <h4>Modelagem</h4>
+                    <p>Criação das regras de negócio, inteligência de cálculos e métricas avançadas.</p>
+                </div>
+                <div class="passo-item">
+                    <div class="passo-numero">4</div>
+                    <h4>Visualização</h4>
+                    <p>Entrega dos painéis dinâmicos prontos para embasar suas próximas decisões.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         NOVA SEÇÃO: FORMULÁRIO DE CONTATO (FINAL DA PÁGINA)
+         ========================================== -->
+    <section id="contato" class="contato-secao">
+        <div class="container">
+            <div class="secao-titulo">
+                <h2>Vamos Transformar Seus Dados em Lucro?</h2>
+                <p>Preencha os campos abaixo para solicitar um diagnóstico inicial da maturidade analítica da sua empresa com nossos especialistas.</p>
+            </div>
+
+            <div class="contato-wrapper">
+                <!-- Coluna de informações institucionais rápida -->
+                <div class="contato-info-box">
+                    <h3>Contato Direto</h3>
+                    <p>Pronto para dar o próximo passo rumo a uma cultura Data-Driven? Estamos à disposição.</p>
+                    
+                    <ul class="lista-detalhes">
+                        <li><span class="icon-circulo">✉</span> contato@dnadatasolutions.com.br</li>
+                        <li><span class="icon-circulo">📍</span> Atendimento Corporativo Global</li>
+                        <li><span class="icon-circulo">📊</span> Especialistas em BI e Engineering</li>
+                    </ul>
+                </div>
+
+                <!-- Coluna Prática com o Formulário -->
+                <div class="contato-form-box">
+                    <form action="#" method="POST">
+                        <div class="form-grupo">
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" class="form-controle" placeholder="Ex: João Silva" required>
+                        </div>
+
+                        <div class="form-grupo">
+                            <label for="email">E-mail Corporativo</label>
+                            <input type="email" id="email" name="email" class="form-controle" placeholder="Ex: joao@empresa.com" required>
+                        </div>
+
+                        <div class="form-grupo">
+                            <label for="empresa">Nome da Empresa</label>
+                            <input type="text" id="empresa" name="empresa" class="form-controle" placeholder="Sua Empresa Ltda.">
+                        </div>
+
+                        <div class="form-grupo">
+                            <label for="mensagem">Descreva o seu Desafio com Dados</label>
+                            <textarea id="mensagem" name="mensagem" class="form-controle" placeholder="Conte-nos brevemente quais painéis ou integrações sua empresa precisa hoje..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         RODAPÉ (FOOTER)
+         ========================================== -->
+    <footer>
+        <div class="container footer-layout">
+            <div class="footer-col-main">
+                <img src="logo.png" alt="DNA Data Solutions" class="footer-logo">
+                <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 10px;">Especialistas em transformar dados brutos em decisões inteligentes, escaláveis e altamente lucrativas.</p>
+            </div>
+            <div class="footer-col-links">
+                <h5>Navegação</h5>
+                <ul class="footer-menu">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#servicos">Nossas Soluções</a></li>
+                    <li><a href="#metodologia">Metodologia</a></li>
+                    <li><a href="#contato">Fale com um Especialista</a></li>
+                </ul>
+            </div>
+            <div class="footer-col-contato">
+                <h5>Soluções Globais</h5>
+                <div class="contato-info">
+                    <p>💼 Consultoria Executiva em BI</p>
+                    <p>⚙ Modelagem de Data Warehouses</p>
+                    <p>📈 Treinamentos Avançados</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 DNA Data Solutions. Todos os direitos reservados. Design Moderno e Responsivo.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
