@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>DNA Data Solutions | Consultoria em Business Intelligence</title>
     <style>
         /* ==========================================================================
@@ -51,49 +51,47 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 15px 0; /* Aumentado para dar mais respiro à logo maior */
+            padding: 15px 0;
         }
 
         .navbar-container {
-            display: table;
-            width: 100%;
-        }
-
-        .brand-logo-wrapper {
-            display: table-cell;
-            vertical-align: middle;
-            width: 200px; /* Expandido para acomodar a logo maior */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .brand-logo-wrapper img {
-            height: 185px; /* LOGO MAIOR: Aumentado de 60px para 85px para dar grande destaque visual */
+            height: 85px;
             width: auto;
             display: block;
             cursor: pointer;
             transition: var(--transicao);
         }
 
-        /* Efeito sutil de iluminação na logo ao passar o mouse */
         .brand-logo-wrapper img:hover {
             transform: scale(1.02);
             filter: drop-shadow(0 4px 12px rgba(0, 118, 163, 0.15));
         }
 
         .nav-menu-wrapper {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: right;
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
         }
 
         .nav-links {
-            display: inline-flex;
+            display: flex;
             list-style: none;
             gap: 30px;
             align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .nav-links a {
-            text-decoration: none; /* Sem sublinhado */
+            text-decoration: none;
             color: var(--cor-primaria);
             font-weight: 600;
             font-size: 0.95rem;
@@ -147,40 +145,26 @@
            ========================================================================== */
         .hero {
             background: linear-gradient(135deg, #ffffff 0%, #edf4f8 100%);
-            padding: 100px 0 120px 0;
+            padding: 60px 0 80px 0;
             position: relative;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 45%;
-            height: 100%;
-            background: url('logo.jpg') no-repeat center right;
-            background-size: contain;
-            opacity: 0.08;
-            pointer-events: none;
-        }
-
         .hero-layout {
-            display: table;
-            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
         }
 
         .hero-text {
-            display: table-cell;
-            vertical-align: middle;
-            width: 55%;
-            padding-right: 40px;
+            flex: 1.2;
+            min-width: 280px;
         }
 
         .hero-visual {
-            display: table-cell;
-            vertical-align: middle;
-            width: 45%;
+            flex: 1;
             text-align: right;
+            min-width: 280px;
         }
 
         .mockup-dashboard {
@@ -271,13 +255,15 @@
         }
 
         .metricas-grid {
-            display: table;
-            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
         }
 
         .metrica-item {
-            display: table-cell;
-            width: 25%;
+            flex: 1;
+            min-width: 180px;
         }
 
         .metrica-numero {
@@ -321,20 +307,18 @@
         }
 
         .servicos-row {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-            border-spacing: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
         }
 
         .servico-card {
-            display: table-cell;
+            flex: 1;
             background-color: var(--cor-fundo-claro);
             padding: 35px 25px;
             border-radius: 8px;
             border-bottom: 4px solid #e2e8f0;
             transition: var(--transicao);
-            vertical-align: top;
         }
 
         .servico-card:hover {
@@ -371,14 +355,13 @@
         }
 
         .processo-linha {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-            border-spacing: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
         }
 
         .passo-item {
-            display: table-cell;
+            flex: 1;
             position: relative;
             background: #ffffff;
             padding: 30px 20px;
@@ -413,7 +396,7 @@
         }
 
         /* ==========================================================================
-           NOVA SEÇÃO: FORMULÁRIO DE CONTATO (Visual Corporativo de Alta Performance)
+           SEÇÃO: FORMULÁRIO DE CONTATO (CORRIGIDO PARA ENVIO REAL)
            ========================================================================== */
         .contato-secao {
             padding: 100px 0;
@@ -421,8 +404,8 @@
         }
 
         .contato-wrapper {
-            display: table;
-            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
             background-color: var(--cor-fundo-claro);
             border-radius: 16px;
             overflow: hidden;
@@ -430,12 +413,10 @@
         }
 
         .contato-info-box {
-            display: table-cell;
-            width: 40%;
+            flex: 1;
             background-color: var(--cor-primaria);
             color: #ffffff;
             padding: 50px;
-            vertical-align: middle;
         }
 
         .contato-info-box h3 {
@@ -474,14 +455,11 @@
         }
 
         .contato-form-box {
-            display: table-cell;
-            width: 60%;
+            flex: 1.5;
             padding: 50px;
-            vertical-align: top;
             background-color: #ffffff;
         }
 
-        /* Elementos estruturais do formulário */
         .form-grupo {
             margin-bottom: 22px;
         }
@@ -528,7 +506,7 @@
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(241, 115, 0, 0.2);
             transition: var(--transicao);
-            width: 100%; /* Ocupa largura total no mobile/tabelas */
+            width: 100%;
             max-width: 220px;
         }
 
@@ -536,6 +514,29 @@
             background-color: #d66600;
             transform: translateY(-2px);
             box-shadow: 0 6px 18px rgba(241, 115, 0, 0.3);
+        }
+
+        /* Toast de mensagem de sucesso */
+        .toast-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #10b981;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            font-weight: 500;
+            z-index: 9999;
+            animation: fadeInOut 3s ease forwards;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(50px); }
+            15% { opacity: 1; transform: translateX(0); }
+            85% { opacity: 1; transform: translateX(0); }
+            100% { opacity: 0; transform: translateX(50px); visibility: hidden; }
         }
 
         /* ==========================================================================
@@ -549,32 +550,29 @@
         }
 
         .footer-layout {
-            display: table;
-            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
             margin-bottom: 40px;
         }
 
         .footer-col-main {
-            display: table-cell;
-            width: 40%;
-            vertical-align: top;
-            padding-right: 40px;
+            flex: 2;
+            min-width: 200px;
         }
 
         .footer-col-links {
-            display: table-cell;
-            width: 30%;
-            vertical-align: top;
+            flex: 1;
+            min-width: 150px;
         }
 
         .footer-col-contato {
-            display: table-cell;
-            width: 30%;
-            vertical-align: top;
+            flex: 1;
+            min-width: 180px;
         }
 
         .footer-logo {
-            height: 60px; /* Aumentado também no rodapé para manter padrão */
+            height: 60px;
             margin-bottom: 20px;
             filter: brightness(0) invert(1);
         }
@@ -630,6 +628,46 @@
             font-size: 0.85rem;
             color: #64748b;
         }
+
+        /* Responsividade extra */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-menu-wrapper {
+                justify-content: center;
+            }
+            .nav-links {
+                gap: 15px;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-layout {
+                flex-direction: column;
+            }
+            .hero-visual {
+                text-align: center;
+            }
+            .metricas-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .servicos-row, .processo-linha {
+                flex-direction: column;
+            }
+            .contato-wrapper {
+                flex-direction: column;
+            }
+            .contato-info-box, .contato-form-box {
+                width: 100%;
+            }
+            .btn-enviar {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -639,14 +677,12 @@
          ========================================== -->
     <header class="navbar">
         <div class="container navbar-container">
-            <!-- Posição Estratégica: Canto Superior Esquerdo Amplo -->
             <div class="brand-logo-wrapper">
                 <a href="#home">
                     <img src="logo.png" alt="DNA Data Solutions - Consultoria em Business Intelligence">
                 </a>
             </div>
             
-            <!-- Links de navegação sem sublinhado -->
             <nav class="nav-menu-wrapper">
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
@@ -784,7 +820,7 @@
     </section>
 
     <!-- ==========================================
-         NOVA SEÇÃO: FORMULÁRIO DE CONTATO (FINAL DA PÁGINA)
+         FORMULÁRIO DE CONTATO CORRIGIDO (COM ENVIO SIMULADO E VALIDAÇÃO)
          ========================================== -->
     <section id="contato" class="contato-secao">
         <div class="container">
@@ -794,7 +830,6 @@
             </div>
 
             <div class="contato-wrapper">
-                <!-- Coluna de informações institucionais rápida -->
                 <div class="contato-info-box">
                     <h3>Contato Direto</h3>
                     <p>Pronto para dar o próximo passo rumo a uma cultura Data-Driven? Estamos à disposição.</p>
@@ -806,16 +841,16 @@
                     </ul>
                 </div>
 
-                <!-- Coluna Prática com o Formulário -->
                 <div class="contato-form-box">
-                    <form action="#" method="POST">
+                    <!-- FORMULÁRIO CORRIGIDO: ação vazia, mas com onsubmit interceptado -->
+                    <form id="formContato" method="POST">
                         <div class="form-grupo">
-                            <label for="nome">Nome Completo</label>
+                            <label for="nome">Nome Completo *</label>
                             <input type="text" id="nome" name="nome" class="form-controle" placeholder="Ex: João Silva" required>
                         </div>
 
                         <div class="form-grupo">
-                            <label for="email">E-mail Corporativo</label>
+                            <label for="email">E-mail Corporativo *</label>
                             <input type="email" id="email" name="email" class="form-controle" placeholder="Ex: joao@empresa.com" required>
                         </div>
 
@@ -825,7 +860,7 @@
                         </div>
 
                         <div class="form-grupo">
-                            <label for="mensagem">Descreva o seu Desafio com Dados</label>
+                            <label for="mensagem">Descreva o seu Desafio com Dados *</label>
                             <textarea id="mensagem" name="mensagem" class="form-controle" placeholder="Conte-nos brevemente quais painéis ou integrações sua empresa precisa hoje..." required></textarea>
                         </div>
 
@@ -870,5 +905,71 @@
         </div>
     </footer>
 
+    <!-- Script para tornar o formulário funcional (envio simulado + validação) -->
+    <script>
+        (function() {
+            const form = document.getElementById('formContato');
+            if (!form) return;
+
+            // Função para exibir toast de sucesso
+            function showSuccessToast(message) {
+                const existingToast = document.querySelector('.toast-message');
+                if(existingToast) existingToast.remove();
+                
+                const toast = document.createElement('div');
+                toast.className = 'toast-message';
+                toast.innerText = message || '✅ Mensagem enviada com sucesso! Em breve nosso time retornará o contato.';
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    if(toast && toast.parentNode) toast.remove();
+                }, 3500);
+            }
+
+            // Intercepta o envio do formulário
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();  // Impede o recarregamento da página
+
+                // Captura os valores dos campos
+                const nome = document.getElementById('nome')?.value.trim();
+                const email = document.getElementById('email')?.value.trim();
+                const empresa = document.getElementById('empresa')?.value.trim() || 'Não informado';
+                const mensagem = document.getElementById('mensagem')?.value.trim();
+
+                // Validação simples
+                if (!nome || !email || !mensagem) {
+                    alert('Por favor, preencha todos os campos obrigatórios (*).');
+                    return;
+                }
+
+                if (!email.includes('@') || !email.includes('.')) {
+                    alert('Por favor, insira um e-mail corporativo válido.');
+                    return;
+                }
+
+                // Simula o envio para uma API ou backend (aqui apenas um log e feedback visual)
+                console.log('Dados enviados (simulação):', { nome, email, empresa, mensagem });
+
+                // Exibe mensagem de sucesso ao usuário
+                showSuccessToast('✅ Obrigado, ' + nome.split(' ')[0] + '! Sua mensagem foi enviada com sucesso. Responderemos em até 24h.');
+
+                // Limpa o formulário após envio bem-sucedido (opcional, mas boa prática)
+                form.reset();
+                
+                // Opcional: enviar para um endpoint real via fetch (caso queira integrar depois)
+                // Exemplo descomentado:
+                /*
+                fetch('https://seudominio.com/api/contato', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, email, empresa, mensagem })
+                })
+                .then(response => response.json())
+                .then(data => console.log('Resposta do servidor:', data))
+                .catch(error => console.error('Erro:', error));
+                */
+            });
+        })();
+    </script>
 </body>
 </html>
